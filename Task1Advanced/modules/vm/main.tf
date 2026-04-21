@@ -9,7 +9,7 @@ terraform {
 
 
 data "yandex_compute_image" "ubuntu" {
-  family = "ubuntu-2204-lts"
+  family = var.vm_image
 }
 
 resource "yandex_compute_disk" "vm_disk" {
@@ -29,7 +29,7 @@ resource "yandex_compute_instance" "vm" {
   }
 
   boot_disk {
-    disk_id = yandex_compute_disk.vm.id
+    disk_id = yandex_compute_disk.vm_disk.id
   }
 
   network_interface {
@@ -38,6 +38,6 @@ resource "yandex_compute_instance" "vm" {
   }
 
   metadata = {
-    ssh-keys = "testUser:${file(var.ssh_keys)}"
+    ssh-keys = "testUser:${var.ssh_key}"
   }
 }

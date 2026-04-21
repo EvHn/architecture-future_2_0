@@ -15,6 +15,11 @@ variable "vm_memory" {
   description = "Memory for test vm"
 }
 
+variable "vm_image" {
+  type        = string
+  description = "Name of VM"
+}
+
 variable "availability_zone" {
   type        = string
   default     = "ru-central1-a"
@@ -32,7 +37,7 @@ variable "subnet_id" {
   description = "Subnet ID"
 }
 
-variable "ssh_keys" {
+variable "ssh_key" {
   type        = string
   description = "SSH key"
 }

@@ -6,19 +6,24 @@ variable "vm_name" {
 variable "vm_cores" {
   type        = number
   default     = 2
-  description = "Number of cores for test vm"
+  description = "Number of cores for VM"
 }
 
 variable "vm_memory" {
   type        = number
   default     = 2
-  description = "Memory for test vm"
+  description = "Memory for VM"
+}
+
+variable "vm_image" {
+  type        = string
+  description = "Name of VM"
 }
 
 variable "availability_zone" {
   type        = string
   default     = "ru-central1-a"
-  description = "Test vm zone"
+  description = "Test VM zone"
 }
 
 variable "vm_disk_size" {
@@ -32,7 +37,7 @@ variable "subnet_id" {
   description = "Subnet ID"
 }
 
-variable "ssh_keys" {
+variable "ssh_key" {
   type        = string
   description = "SSH key"
 }
