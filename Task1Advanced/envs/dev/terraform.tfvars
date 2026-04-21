@@ -1,0 +1,9 @@
+availability_zone = "ru-central1-a"
+vm_name           = "test-vm"
+vm_cores          = 2
+vm_memory         = 2
+vm_disk_name      = "test-vm-disk"
+vm_disk_type      = "network-ssd"
+vm_disk_size      = 15
+subnet_id         = "test-subnet"
+ssh_keys          = "~/.ssh/id_rsa.pub"
