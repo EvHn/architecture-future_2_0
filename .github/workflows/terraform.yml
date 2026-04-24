@@ -28,8 +28,8 @@ jobs:
     env:
       TF_VAR_ssh_key: ${{ secrets.SSH_PUBLIC_KEY }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v2.0.3
+      - uses: actions/checkout@v6.0.2
+      - uses: hashicorp/setup-terraform@v4.0.0
 
       - name: YC Auth
         run: |
@@ -38,11 +38,11 @@ jobs:
           echo "YC_SERVICE_ACCOUNT_KEY_FILE=$HOME/.yc/key.json" >> $GITHUB_ENV
 
       - name: Run terraform init
-        run: terraform -chdir=./Task2Advanced/ init
+        run: terraform -chdir=./Task2Advanced/ init -backend-config="access_key=${{ secrets.ACCESS_KEY }}" -backend-config="secret_key=${{ secrets.SECRET_KEY }}"
 
       - name: Run terraform plan
         run: terraform -chdir=./Task2Advanced/ plan -no-color -var-file=../Task1Advanced/envs/${{ inputs.env }}/terraform.tfvars
 
       - name: Run terraform apply
         if: ${{ inputs.apply }}
-        run: terraform -chdir=./Task2Advanced/ apply -no-color -var-file=../Task1Advanced/envs/${{ inputs.env }}/terraform.tfvars
+        run: terraform -chdir=./Task2Advanced/ apply -no-color -auto-approve -var-file=../Task1Advanced/envs/${{ inputs.env }}/terraform.tfvars
